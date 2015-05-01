@@ -928,5 +928,17 @@ class WPMinify {
 
 require_once('common.php');
 require_once('http_build_url.php');
-$wp_minify = new WPMinify();
+
+//$wp_minify = new WPMinify();
+
+/**
+ * Fixed is_feed() called incorrectly notice
+ * @author constantin.boiangiu
+ * @link https://wordpress.org/support/topic/notice-is_feed-was-called-incorrectly#post-3903493
+ */
+function wpmin_start(){
+  global $wp_minify;
+  $wp_minify = new WPMinify();
+}
+add_action('init', 'wpmin_start');
 ?>
